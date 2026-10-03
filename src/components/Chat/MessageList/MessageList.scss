@@ -1,0 +1,27 @@
+.chat-message-list
+{
+	display: flex;
+	flex-direction: column;
+	gap: 4px;
+	flex: 1;
+	min-height: 0;
+	padding: 16px 20px;
+	overflow-y: auto;
+
+	@include mq($mobile) { padding: 12px; }
+
+	&--empty
+	{
+		align-items: center;
+		justify-content: center;
+	}
+}
+
+.chat-message-list__hint
+{
+	padding: 6px 14px;
+	border-radius: 999px;
+	font-size: 14px;
+	color: $color-text-inverse;
+	background-color: rgba(0, 0, 0, 0.25);
+}
