@@ -1,0 +1,119 @@
+// Partials loaded via @use don't get Vite additionalData, so imports are explicit here
+@use 'variables' as *;
+@use 'mixins' as *;
+
+*,
+*::before,
+*::after { box-sizing: border-box; }
+
+html,
+body,
+#root { height: 100%; }
+
+body
+{
+	margin: 0;
+	font-family: $font-main;
+	font-size: 15px;
+	line-height: 1.4;
+	color: $color-text;
+	background-color: $color-bg;
+	-webkit-font-smoothing: antialiased;
+}
+
+button,
+input,
+textarea { font: inherit; }
+
+.g-button
+{
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	gap: 8px;
+	height: 44px;
+	padding: 0 20px;
+	border: none;
+	border-radius: $radius;
+	font-weight: 600;
+	color: $color-text-inverse;
+	background-color: $color-accent;
+	cursor: pointer;
+	@include transition(background-color, opacity);
+
+	&:hover:not(:disabled) { background-color: $color-accent-hover; }
+
+	&:disabled
+	{
+		opacity: 0.5;
+		cursor: default;
+	}
+
+	&--secondary
+	{
+		color: $color-text;
+		background-color: $color-surface-hover;
+
+		&:hover:not(:disabled) { background-color: $color-border; }
+	}
+}
+
+.g-icon-button
+{
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	flex-shrink: 0;
+	width: 40px;
+	height: 40px;
+	padding: 9px;
+	border: none;
+	border-radius: 50%;
+	color: $color-text-secondary;
+	background: transparent;
+	cursor: pointer;
+	@include transition(background-color, color);
+
+	&:hover:not(:disabled)
+	{
+		color: $color-accent;
+		background-color: $color-surface-hover;
+	}
+
+	&:disabled
+	{
+		opacity: 0.4;
+		cursor: default;
+	}
+}
+
+.g-input
+{
+	width: 100%;
+	height: 44px;
+	padding: 0 14px;
+	border: 1px solid $color-border;
+	border-radius: $radius;
+	color: $color-text;
+	background-color: $color-surface;
+	outline: none;
+	@include transition(border-color, box-shadow);
+
+	&::placeholder { color: $color-text-secondary; }
+
+	&:focus
+	{
+		border-color: $color-accent;
+		box-shadow: 0 0 0 3px $color-accent-soft;
+	}
+}
+
+.g-error
+{
+	margin: 0;
+	padding: 10px 12px;
+	border-radius: $radius;
+	font-size: 14px;
+	color: $color-danger;
+	background-color: $color-danger-soft;
+}

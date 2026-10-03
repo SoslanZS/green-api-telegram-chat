@@ -1,0 +1,20 @@
+@use 'sass:list';
+@use 'variables' as *;
+
+// Media query "up to" breakpoint: @include mq($mobile) { ... }
+@mixin mq($breakpoint)
+{
+	@media (max-width: $breakpoint) { @content; }
+}
+
+// @include transition(color, background-color) -> transition: color 0.2s ease, background-color 0.2s ease
+@mixin transition($properties...)
+{
+	$list: ();
+	@each $property in $properties
+	{
+		$list: list.append($list, $property 0.2s ease, comma);
+	}
+
+	transition: $list;
+}
