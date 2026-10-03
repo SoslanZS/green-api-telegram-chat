@@ -1,0 +1,29 @@
+{
+	"name": "green-api-telegram-chat",
+	"private": true,
+	"version": "1.0.0",
+	"type": "module",
+	"scripts": {
+		"dev": "vite",
+		"build": "tsc && vite build",
+		"preview": "vite preview",
+		"test": "vitest run",
+		"typecheck": "tsc"
+	},
+	"dependencies": {
+		"mobx": "^6.16.1",
+		"mobx-react-lite": "^4.1.1",
+		"react": "^18.3.1",
+		"react-dom": "^18.3.1"
+	},
+	"devDependencies": {
+		"@types/node": "^22.20.4",
+		"@types/react": "^18.3.31",
+		"@types/react-dom": "^18.3.7",
+		"@vitejs/plugin-react": "^4.3.4",
+		"sass": "^1.77.8",
+		"typescript": "^5.9.3",
+		"vite": "^5.4.11",
+		"vitest": "^2.1.8"
+	}
+}
