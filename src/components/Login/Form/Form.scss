@@ -1,0 +1,93 @@
+.login-form
+{
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	min-height: 100%;
+	padding: 24px 16px;
+	background: linear-gradient(135deg, rgba($color-gradient-start, 0.12), rgba($color-gradient-end, 0.12)), $color-bg;
+}
+
+.login-form__card
+{
+	display: flex;
+	flex-direction: column;
+	gap: 16px;
+	width: 100%;
+	max-width: 400px;
+	padding: 32px;
+	border-radius: 20px;
+	background-color: $color-surface;
+	box-shadow: 0 12px 40px rgba(27, 31, 38, 0.08);
+
+	@include mq($mobile) { padding: 24px 20px; }
+}
+
+.login-form__card-logo
+{
+	width: 56px;
+	height: 56px;
+	border-radius: 50%;
+	background: url('@/assets/logo.svg') center / cover no-repeat;
+}
+
+.login-form__card-title
+{
+	margin: 0;
+	font-size: 24px;
+	line-height: 1.2;
+}
+
+.login-form__card-text
+{
+	margin: -8px 0 0;
+	color: $color-text-secondary;
+}
+
+.login-form__card-link
+{
+	color: $color-accent;
+	text-decoration: none;
+
+	&:hover { text-decoration: underline; }
+}
+
+.login-form__card-field
+{
+	display: flex;
+	flex-direction: column;
+	gap: 6px;
+}
+
+.login-form__card-label
+{
+	font-size: 13px;
+	font-weight: 600;
+	color: $color-text-secondary;
+}
+
+.login-form__card-advanced
+{
+	display: flex;
+	flex-direction: column;
+	gap: 12px;
+
+	&[open] .login-form__card-advanced-toggle { margin-bottom: 12px; }
+}
+
+.login-form__card-advanced-toggle
+{
+	font-size: 14px;
+	color: $color-text-secondary;
+	cursor: pointer;
+	user-select: none;
+}
+
+.login-form__card-hint
+{
+	margin: 0;
+	font-size: 13px;
+	color: $color-text-secondary;
+}
+
+.login-form__card-submit { margin-top: 4px; }
