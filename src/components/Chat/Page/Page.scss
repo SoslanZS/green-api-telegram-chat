@@ -1,0 +1,19 @@
+.chat-page
+{
+	display: grid;
+	grid-template-columns: $sidebar-width 1fr;
+	height: 100%;
+	overflow: hidden;
+
+	// Mobile: one panel at a time — the list, or the open chat
+	@include mq($mobile)
+	{
+		grid-template-columns: 1fr;
+
+		.chat-window { display: none; }
+
+		&--chat-open .chat-sidebar { display: none; }
+
+		&--chat-open .chat-window { display: flex; }
+	}
+}

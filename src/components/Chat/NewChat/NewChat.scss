@@ -1,0 +1,20 @@
+.chat-new-chat
+{
+	display: flex;
+	flex-direction: column;
+	gap: 10px;
+	margin: 0 12px 8px;
+	padding: 12px;
+	border-radius: $radius;
+	background-color: $color-bg;
+}
+
+.chat-new-chat__top
+{
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	margin: -4px -4px 0 4px;
+}
+
+.chat-new-chat__top-title { font-weight: 600; }

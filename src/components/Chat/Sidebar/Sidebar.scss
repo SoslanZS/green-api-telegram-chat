@@ -1,0 +1,118 @@
+.chat-sidebar
+{
+	display: flex;
+	flex-direction: column;
+	min-width: 0;
+	min-height: 0;
+	border-right: 1px solid $color-border;
+	background-color: $color-surface;
+}
+
+.chat-sidebar__header
+{
+	display: flex;
+	align-items: center;
+	gap: 4px;
+	padding: 16px 12px 12px 20px;
+}
+
+.chat-sidebar__header-info
+{
+	flex: 1;
+	min-width: 0;
+}
+
+.chat-sidebar__header-title
+{
+	margin: 0;
+	font-size: 22px;
+	line-height: 1.2;
+}
+
+.chat-sidebar__header-instance
+{
+	font-size: 12px;
+	color: $color-text-secondary;
+}
+
+.chat-sidebar__list
+{
+	flex: 1;
+	margin: 0;
+	padding: 4px 8px 8px;
+	list-style: none;
+	overflow-y: auto;
+}
+
+.chat-sidebar__list-item
+{
+	display: flex;
+	align-items: center;
+	gap: 12px;
+	width: 100%;
+	padding: 10px 12px;
+	border: none;
+	border-radius: $radius;
+	text-align: left;
+	color: inherit;
+	background: transparent;
+	cursor: pointer;
+	@include transition(background-color);
+
+	&:hover { background-color: $color-surface-hover; }
+
+	&--active,
+	&--active:hover { background-color: $color-surface-active; }
+}
+
+.chat-sidebar__list-item-body
+{
+	display: flex;
+	flex-direction: column;
+	gap: 2px;
+	flex: 1;
+	min-width: 0;
+}
+
+.chat-sidebar__list-item-top
+{
+	display: flex;
+	align-items: baseline;
+	gap: 8px;
+}
+
+.chat-sidebar__list-item-title
+{
+	flex: 1;
+	font-weight: 600;
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+}
+
+.chat-sidebar__list-item-time
+{
+	flex-shrink: 0;
+	font-size: 12px;
+	color: $color-text-secondary;
+}
+
+.chat-sidebar__list-item-preview
+{
+	font-size: 14px;
+	color: $color-text-secondary;
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+}
+
+.chat-sidebar__empty
+{
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	gap: 4px;
+	padding: 40px 20px;
+	text-align: center;
+	color: $color-text-secondary;
+}
