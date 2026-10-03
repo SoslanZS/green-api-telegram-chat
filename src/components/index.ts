@@ -26,3 +26,4 @@ export { default as IconsClose } from './icons/Close';
 export { default as IconsLogout } from './icons/Logout';
 export { default as IconsPlus } from './icons/Plus';
 export { default as IconsSend } from './icons/Send';
+export { default as IconsTrash } from './icons/Trash';

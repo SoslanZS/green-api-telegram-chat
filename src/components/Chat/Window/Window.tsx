@@ -4,6 +4,7 @@ import {
 	ChatMessageList,
 	IconsBack,
 	IconsChat,
+	IconsTrash,
 	UiAvatar,
 } from '@/components';
 import { useChatsStore } from '@/hooks/useChatsStore';
@@ -30,6 +31,11 @@ const ChatWindow = () => {
 	const title = getChatTitle(chat);
 	const subtitle = chat.name && chat.phone ? formatPhone(chat.phone) : 'Telegram';
 
+	const handleDelete = () => {
+		if (window.confirm(`Удалить чат с ${title}? История сообщений удалится только из этого браузера.`))
+			store.deleteChat(chat.chatId);
+	};
+
 	return (
 		<section className="chat-window">
 			<header className="chat-window__header">
@@ -50,6 +56,14 @@ const ChatWindow = () => {
 					<span className="chat-window__header-title">{title}</span>
 					<span className="chat-window__header-subtitle">{subtitle}</span>
 				</div>
+				<button
+					className="g-icon-button chat-window__header-delete"
+					type="button"
+					title="Удалить чат"
+					onClick={handleDelete}
+				>
+					<IconsTrash />
+				</button>
 			</header>
 
 			<ChatMessageList messages={chat.messages} />

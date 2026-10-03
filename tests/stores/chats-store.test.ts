@@ -114,6 +114,26 @@ describe('ChatsStore', () => {
 		});
 		expect(store.chats['100'].messages[0]).toMatchObject({ id: 'in-1', text: 'Привет', direction: 'incoming' });
 	});
+
+	describe('deleteChat', () => {
+		test('removes the chat, its history and order entry', () => {
+			store.openChat('200');
+			store.deleteChat('100');
+			expect(store.chats['100']).toBeUndefined();
+			expect(store.order).toEqual(['200']);
+		});
+
+		test('closes the chat if it was open', () => {
+			store.deleteChat('100');
+			expect(store.activeChat).toBeNull();
+		});
+
+		test('keeps another open chat active', () => {
+			store.openChat('200');
+			store.deleteChat('100');
+			expect(store.activeChatId).toBe('200');
+		});
+	});
 });
 
 describe('restoreChatsState', () => {

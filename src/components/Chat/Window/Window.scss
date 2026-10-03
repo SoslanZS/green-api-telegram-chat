@@ -56,7 +56,14 @@
 {
 	display: flex;
 	flex-direction: column;
+	flex: 1;
 	min-width: 0;
+}
+
+.chat-window__header-delete:hover:not(:disabled)
+{
+	color: $color-danger;
+	background-color: $color-danger-soft;
 }
 
 .chat-window__header-title

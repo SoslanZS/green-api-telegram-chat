@@ -124,6 +124,18 @@ export class ChatsStore
 		this.activeChatId = chatId;
 	}
 
+	// Removes the chat and its history only locally; a new incoming message recreates it
+	deleteChat(chatId: string)
+	{
+		if (!this.chats[chatId])
+			return;
+
+		delete this.chats[chatId];
+		this.order = this.order.filter((id) => id !== chatId);
+		if (this.activeChatId === chatId)
+			this.activeChatId = null;
+	}
+
 	addMessage(chatId: string, message: Message, name?: string)
 	{
 		const chat = this.getOrCreateChat(chatId);
