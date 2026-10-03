@@ -1,5 +1,5 @@
 import { describe, test, expect } from 'vitest';
-import { formatPhone, isValidPhone, normalizePhone } from '@/utils/phone';
+import { formatPhone, isValidPhone, maskPhoneInput, normalizePhone } from '@/utils/phone';
 
 describe('normalizePhone', () => {
 	test('keeps digits only', () => {
@@ -12,6 +12,10 @@ describe('normalizePhone', () => {
 
 	test('does not touch a leading 8 in other lengths', () => {
 		expect(normalizePhone('+86 138 0013 8000')).toBe('8613800138000');
+	});
+
+	test('adds 7 to a Russian number without country code', () => {
+		expect(normalizePhone('9188390826')).toBe('79188390826');
 	});
 
 	test('handles empty values', () => {
@@ -36,5 +40,32 @@ describe('formatPhone', () => {
 
 	test('prefixes other numbers with +', () => {
 		expect(formatPhone('8613800138000')).toBe('+8613800138000');
+	});
+});
+
+describe('maskPhoneInput', () => {
+	test('adds +7 when a number starts with 9', () => {
+		expect(maskPhoneInput('9188390826')).toBe('+7 (918) 839-08-26');
+	});
+
+	test('replaces a leading 8 with +7', () => {
+		expect(maskPhoneInput('89188390826')).toBe('+7 (918) 839-08-26');
+	});
+
+	test('formats partial input', () => {
+		expect(maskPhoneInput('7918')).toBe('+7 (918');
+		expect(maskPhoneInput('791883')).toBe('+7 (918) 83');
+	});
+
+	test('cuts extra digits of a Russian number', () => {
+		expect(maskPhoneInput('+7 (918) 839-08-26 99')).toBe('+7 (918) 839-08-26');
+	});
+
+	test('keeps other countries as +digits', () => {
+		expect(maskPhoneInput('380501234567')).toBe('+380501234567');
+	});
+
+	test('returns empty string for no digits', () => {
+		expect(maskPhoneInput('+')).toBe('');
 	});
 });

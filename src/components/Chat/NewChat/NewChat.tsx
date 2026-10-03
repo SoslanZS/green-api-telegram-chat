@@ -1,6 +1,7 @@
-import { useState, type FormEvent } from 'react';
+import { useState, type ChangeEvent, type FormEvent } from 'react';
 import { GreenApiError } from '@/api/green-api';
 import { IconsClose } from '@/components';
+import { maskPhoneInput } from '@/utils/phone';
 import './NewChat.scss';
 
 type Props = {
@@ -15,6 +16,14 @@ const ChatNewChat = ({ onCreate, onCancel }: Props) => {
 	const [isLoading, setIsLoading] = useState(false);
 
 	// functions
+	const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
+		const { value } = event.target;
+		const digits = (text: string) => text.replace(/\D/g, '');
+		// Backspace over a mask character ("-", ")", " ") removes the digit before it
+		const isMaskCharDeleted = value.length < phone.length && digits(value) === digits(phone);
+		setPhone(maskPhoneInput(isMaskCharDeleted ? digits(value).slice(0, -1) : value));
+	};
+
 	const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
 		event.preventDefault();
 		if (!phone.trim() || isLoading)
@@ -51,9 +60,10 @@ const ChatNewChat = ({ onCreate, onCancel }: Props) => {
 			<input
 				className="g-input"
 				value={phone}
-				onChange={(event) => setPhone(event.target.value)}
+				onChange={handleChange}
 				type="tel"
-				placeholder="Номер получателя, +7 999 123-45-67"
+				inputMode="tel"
+				placeholder="+7 (999) 123-45-67"
 				autoFocus
 			/>
 			{error && <p className="g-error">{error}</p>}
